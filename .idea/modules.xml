@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/kindergarten_healther/healther.iml" filepath="$PROJECT_DIR$/kindergarten_healther/healther.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kindergarten_parent/parent.iml" filepath="$PROJECT_DIR$/kindergarten_parent/parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kindergarten_platform/platform.iml" filepath="$PROJECT_DIR$/kindergarten_platform/platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kindergarten_rector/rector.iml" filepath="$PROJECT_DIR$/kindergarten_rector/rector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kindergarten_security/security.iml" filepath="$PROJECT_DIR$/kindergarten_security/security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server/server.iml" filepath="$PROJECT_DIR$/Server/server.iml" />
       <module fileurl="file://$PROJECT_DIR$/system.iml" filepath="$PROJECT_DIR$/system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kindergarten_teacher/teacher.iml" filepath="$PROJECT_DIR$/kindergarten_teacher/teacher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webclient/webclient.iml" filepath="$PROJECT_DIR$/webclient/webclient.iml" />
     </modules>
   </component>
 </project>
