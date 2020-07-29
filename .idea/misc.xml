@@ -4,6 +4,14 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/kindergarten_healther/pom.xml" />
+        <option value="$PROJECT_DIR$/kindergarten_parent/pom.xml" />
+        <option value="$PROJECT_DIR$/kindergarten_platform/pom.xml" />
+        <option value="$PROJECT_DIR$/kindergarten_rector/pom.xml" />
+        <option value="$PROJECT_DIR$/kindergarten_security/pom.xml" />
+        <option value="$PROJECT_DIR$/kindergarten_teacher/pom.xml" />
+        <option value="$PROJECT_DIR$/Server/pom.xml" />
+        <option value="$PROJECT_DIR$/webclient/pom.xml" />
       </list>
     </option>
   </component>
