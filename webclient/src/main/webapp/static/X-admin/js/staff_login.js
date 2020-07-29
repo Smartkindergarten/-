@@ -31,13 +31,13 @@ $(function(){
                     $("#captcha").val('');
                     draw(show_num);
                     $.ajax({
-                        url:"/directorControler/login",
+                        url:"/teacherController/teachersLogin",
                         method:"post",
                         data: data,
                         dataType:"json",
                         success:function (data) {
                             if (data.code == 1) {
-                                window.location.href = "/page/teacher/main";
+                                window.location.href = "https://www.baidu.com";
                             }else {
                                 layer.msg("登录失败")
                             }
