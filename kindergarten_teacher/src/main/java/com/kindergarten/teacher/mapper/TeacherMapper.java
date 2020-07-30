@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface TeacherMapper
 {
 
-    TblTeachers login(TblTeachers tblTeachers);
+   public TblTeachers tologin(String tel);
+   public String FindRole(int teacherid);
 
 }

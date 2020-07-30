@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="<%=path%>/static/X-admin/lib/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="<%=path%>/static/X-admin/lib/layuimini/lib/layui-v2.5.5/css/layui.css" media="all">
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -48,11 +48,11 @@
         <form class="layui-form" action="">
             <div>
                 <i class="layui-icon layui-icon-username admin-icon"></i>
-                <input type="text" name="account" placeholder="请输入账号" value="" autocomplete="off" class="layui-input admin-input admin-input-username">
+                <input type="text" name="tel" id="tel" placeholder="请输入手机号" value="" autocomplete="off" class="layui-input admin-input admin-input-username">
             </div>
             <div>
                 <i class="layui-icon layui-icon-password admin-icon"></i>
-                <input type="password" name="password" placeholder="请输入密码"value="" autocomplete="off" class="layui-input admin-input">
+                <input type="password" name="password" id="password" placeholder="请输入密码"value="" autocomplete="off" class="layui-input admin-input">
             </div>
             <div>
                 <input type="text" id="captcha" placeholder="请输入验证码" value="" autocomplete="off" class="layui-input admin-input admin-input-verify">
@@ -69,9 +69,9 @@
         </form>
     </div>
 </div>
-<script src="<%=path%>/static/X-admin/js/jquery.min.js" charset="utf-8"></script>
-<script src="<%=path%>/static/X-admin/lib/layui/layui.js" charset="utf-8"></script>
-<script src="<%=path%>/static/X-admin/js/staff_login.js" charset="utf-8"></script>
+<script src="<%=path%>/static/X-admin/lib/layuimini/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="<%=path%>/static/X-admin/lib/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<%--<script src="<%=path%>/static/X-admin/js/staff_login.js" charset="utf-8"></script>--%>
 
 <script>
     layui.use(['form'], function () {
@@ -81,6 +81,139 @@
         if (top.location != self.location) top.location = self.location;
 
     });
+
+    $(function(){
+
+        var show_num = [];
+        draw(show_num);
+        $("#canvas").on('click',function(){
+            draw(show_num);
+        })
+
+        layui.use(['form','layer'], function () {
+            var form = layui.form,
+                layer = layui.layer,
+                $=layui.jquery;
+            // 进行登录操作
+            form.on('submit(login)', function (data) {
+                data = data.field;
+                if (data.tel == '') {
+                    layer.msg('用户名不能为空');
+                    return false;
+                }
+                if (data.password == '') {
+                    layer.msg('密码不能为空');
+                    return false;
+                }
+                if ($("#captcha").val() == '') {
+                    layer.msg('验证码不能为空');
+                    return false;
+                }else{
+                    // alert('提交成功！');
+                    var val = $("#captcha").val().toLowerCase();
+                    // alert('val:'+val);
+                    var num = show_num.join("");
+                    // alert('num:'+num);
+                    if(val == num){
+                        // alert('提交成功！');
+                        $("#captcha").val('');
+                        draw(show_num);
+                        var tel = $("#tel").val().toLowerCase();
+                        // alert('tel:'+tel);
+                        var password = $("#password").val().toLowerCase();
+                        // alert('password:'+password);
+                        // console.log(tel);
+                        // alert('passwordssss:'+console.log(tel));
+                        // console.log(password);
+                        // alert('asdasdasd:'+console.log(password));
+                        $.ajax({
+                            url:"/teacherController/Login",
+                            method:"post",
+                            // data:data,
+                            data:{"tel":tel,"password":password},
+                            dataType:"json",
+                            success:function (msg) {
+                                if (msg === 1) {
+                                    layer.msg("登录成功,msg为:"+msg);
+                                    window.location.href = "https://www.baidu.com";
+                                }else {
+                                    layer.msg("登录失败，msg为:"+msg);
+                                }
+                            },
+                            beforeSend:function () {
+                                $("#loginBtn").attr('disabled',true)
+                            },
+                            complete:function () {
+                                $("#loginBtn").attr('disabled',false)
+                            }
+                        })
+                    }else{
+                        alert('验证码错误！请重新输入！');
+                        $("#captcha").val('');
+                        draw(show_num);
+                        return false;
+                    }
+                }
+                return false;
+            });
+        })
+    })
+
+    function draw(show_num) {
+        var canvas_width=$('#canvas').width();
+        var canvas_height=$('#canvas').height();
+        var canvas = document.getElementById("canvas");//获取到canvas的对象，演员
+        var context = canvas.getContext("2d");//获取到canvas画图的环境，演员表演的舞台
+        canvas.width = canvas_width;
+        canvas.height = canvas_height;
+        // var sCode = "A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";
+        var sCode = "1,2,3,4,5,6,7,8,9,0";
+        var aCode = sCode.split(",");
+        var aLength = aCode.length;//获取到数组的长度
+
+        for (var i = 0; i <= 3; i++) {
+            var j = Math.floor(Math.random() * aLength);//获取到随机的索引值
+            var deg = Math.random() * 30 * Math.PI / 180;//产生0~30之间的随机弧度
+            var txt = aCode[j];//得到随机的一个内容
+            show_num[i] = txt.toLowerCase();
+            var x = 10 + i * 20;//文字在canvas上的x坐标
+            var y = 20 + Math.random() * 8;//文字在canvas上的y坐标
+            context.font = "bold 23px 微软雅黑";
+
+            context.translate(x, y);
+            context.rotate(deg);
+
+            context.fillStyle = randomColor();
+            context.fillText(txt, 0, 0);
+
+            context.rotate(-deg);
+            context.translate(-x, -y);
+        }
+        for (var i = 0; i <= 5; i++) { //验证码上显示线条
+            context.strokeStyle = randomColor();
+            context.beginPath();
+            context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
+            context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
+            context.stroke();
+        }
+        for (var i = 0; i <= 30; i++) { //验证码上显示小点
+            context.strokeStyle = randomColor();
+            context.beginPath();
+            var x = Math.random() * canvas_width;
+            var y = Math.random() * canvas_height;
+            context.moveTo(x, y);
+            context.lineTo(x + 1, y + 1);
+            context.stroke();
+        }
+    }
+
+    function randomColor() {//得到随机的颜色值
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
 </script>
 </body>
 </html>

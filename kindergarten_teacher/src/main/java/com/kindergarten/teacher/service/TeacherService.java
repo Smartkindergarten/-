@@ -5,6 +5,6 @@ import com.kindergarten.teacher.model.TblTeachers;
 public interface TeacherService
 {
 
-    TblTeachers teachersLogin(TblTeachers tblTeachers);
+   public TblTeachers login(String tel);
 
 }

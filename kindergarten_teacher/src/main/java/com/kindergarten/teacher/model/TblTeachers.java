@@ -4,7 +4,7 @@ public class TblTeachers
 {
 
     private int teacherId;
-    private int teacherTel;
+    private String teacherTel;
     private String teacherPwd;
     private String teacherName;
 
@@ -13,7 +13,7 @@ public class TblTeachers
 
     }
 
-    public TblTeachers(int teacherId,int teacherTel,String teacherPwd)
+    public TblTeachers(int teacherId,String teacherTel,String teacherPwd)
     {
         this.teacherId = teacherId;
         this.teacherTel = teacherTel;
@@ -28,11 +28,11 @@ public class TblTeachers
         this.teacherId = teacherId;
     }
 
-    public int getTeacherTel() {
+    public String getTeacherTel() {
         return teacherTel;
     }
 
-    public void setTeacherTel(int teacherTel) {
+    public void setTeacherTel(String teacherTel) {
         this.teacherTel = teacherTel;
     }
 

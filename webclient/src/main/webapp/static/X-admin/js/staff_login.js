@@ -1,4 +1,5 @@
 $(function(){
+
     var show_num = [];
     draw(show_num);
     $("#canvas").on('click',function(){
@@ -24,21 +25,28 @@ $(function(){
                 layer.msg('验证码不能为空');
                 return false;
             }else{
+                var path=$("#path").val();
                 var val = $("#captcha").val().toLowerCase();
                 var num = show_num.join("");
+                var tel = data.field.account;
+                var password = data.field.password;
+                console.log(tel);
+                console.log(password);
                 if(val == num){
-                    // alert('提交成功！');
+                    alert('提交成功！');
                     $("#captcha").val('');
                     draw(show_num);
                     $.ajax({
-                        url:"/teacherController/teachersLogin",
+                        url:path+"/teacherController/Login",
                         method:"post",
-                        data: data,
-                        dataType:"json",
-                        success:function (data) {
-                            if (data.code == 1) {
-                                window.location.href = "https://www.baidu.com";
+                        data:{"tel":tel,"password":password},
+                        dataType:"text",
+                        success:function (msg) {
+                            if (msg === "success") {
+                                layer.msg(msg);
+                                // window.location.href = "https://www.baidu.com";
                             }else {
+                                layer.msg(msg, {icon: 5});
                                 layer.msg("登录失败")
                             }
                         },
