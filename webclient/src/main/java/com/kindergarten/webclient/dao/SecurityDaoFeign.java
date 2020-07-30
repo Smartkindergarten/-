@@ -1,4 +1,4 @@
 package com.kindergarten.webclient.dao;
 
-public class SecurityDaoFeign {
+public interface SecurityDaoFeign {
 }
