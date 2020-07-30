@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kindergarten.security.mapper.SecurityMapper">
+
+
+    <select id="login" parameterType="com.kindergarten.security.bean.Security" resultType="com.kindergarten.security.bean.Security">
+        select * from tbl_security where security_phone = #{securityPhone} and security_pwd= #{securityPwd}
+    </select>
+
+    <select id="securityList" parameterType="com.kindergarten.security.bean.PageBean" resultType="com.kindergarten.security.bean.Security">
+        select * from tbl_security
+
+    </select>
+
+    <delete id="deleteSecurity" parameterType="com.kindergarten.security.bean.Security">
+        delete from tbl_security where account =#{account}
+    </delete>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(*) from tbl_security
+    </select>
+
+</mapper>
