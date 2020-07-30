@@ -7,7 +7,7 @@ public class LayuiData<T> {
     private Integer code,count;
     private String msg;
     private List<T> data;
-//嘀咕嘀咕嘀咕呃呃呃
+
     public LayuiData(Integer code, Integer count, String msg, List<T> data) {
         this.code = code;
         this.count = count;

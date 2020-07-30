@@ -6,16 +6,16 @@
 <mapper namespace="com.kindergarten.security.mapper.SecurityMapper">
 
 
-    <select id="login" parameterType="com.kindergarten.security.bean.Security" resultType="com.kindergarten.security.bean.Admin">
+    <select id="login" parameterType="com.kindergarten.security.bean.Security" resultType="com.kindergarten.security.bean.Security">
         select * from tbl_security where security_phone = #{securityPhone} and security_pwd= #{securityPwd}
     </select>
 
-    <select id="securityList" parameterType="com.kindergarten.security.bean.PageBean" resultType="com.kindergarten.security.bean.Admin">
+    <select id="securityList" parameterType="com.kindergarten.security.bean.PageBean" resultType="com.kindergarten.security.bean.Security">
         select * from tbl_security
 
     </select>
 
-    <delete id="deleteSecurity" parameterType="com.kindergarten.security.bean.Admin">
+    <delete id="deleteSecurity" parameterType="com.kindergarten.security.bean.Security">
         delete from tbl_security where account =#{account}
     </delete>
 

@@ -3,7 +3,7 @@ package com.kindergarten.security.bean;
 import java.util.List;
 
 public class PageBean<T> {
-//现在v工作v政府v杀杀杀
+
     private Integer curPage;
     private Integer prePage;
     private Integer nextPage;
